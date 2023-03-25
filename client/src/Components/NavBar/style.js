@@ -13,6 +13,7 @@ export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
+  z-index: 10;
 `;
 
 export const StyledLink = styled(Link)`
