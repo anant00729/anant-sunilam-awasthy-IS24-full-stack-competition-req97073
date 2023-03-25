@@ -4,6 +4,7 @@ import ProductForm from '../ProductForm';
 import ProductList from '../ProductList';
 import NoMatch from '../NoMatch'
 import NavBar from '../../Components/NavBar';
+import Alert from '../../Components/Alert';
 import { PageContainer  } from './style'
 import { BodyContainer } from '../../Utils/style'
 
@@ -18,6 +19,7 @@ function PageRoutes() {
           <Route path="*" element={<NoMatch />} />
        </Routes>
       </BodyContainer>
+      <Alert />
     </PageContainer>
   )
 }

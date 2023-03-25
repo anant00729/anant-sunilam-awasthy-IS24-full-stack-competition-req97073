@@ -4,14 +4,18 @@ import {
 SHOW_PRODUCT_LIST,
 ADD_PRODUCT,
 UPDATE_PRODUCT,
-SEARCH_PRODUCT
+SEARCH_PRODUCT,
+SET_ALERT,
+REMOVE_ALERT
 } from "./types";
+import { v4 as uuidv4 } from "uuid";
 // import useCropGrid from '../hooks/useCropGrid'
 
 // Initial state
 const initialState = {
   product_list: {},
-  current_product: {}
+  current_product: {},
+  alerts: []
 };
 
 // Create context
@@ -38,16 +42,29 @@ export const GlobalProvider = ({ children }) => {
   const search = async () => {
     
   }
+  
+  const setAlert = (msg, timeout = 2500) => {
+    if (msg) {
+      const id = uuidv4();
+      dispatch({
+        type: SET_ALERT,
+        payload: { msg, id },
+      });
+      setTimeout(() => dispatch({ type: REMOVE_ALERT, payload: id }), timeout);
+    }
+  }
 
   return (
     <GlobalContext.Provider
       value={{
-        product_list: state.product_list,
-        current_product: state.current_product,
+        product_list: state?.product_list,
+        current_product: state?.current_product,
+        alerts: state?.alerts,
         getAllProducts,
         addProduct,
         updateProduct,
-        search
+        search,
+        setAlert
       }}
     >
       {children}
