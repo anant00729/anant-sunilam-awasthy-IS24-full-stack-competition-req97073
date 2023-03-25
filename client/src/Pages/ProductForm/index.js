@@ -1,6 +1,6 @@
 import React,{ useState } from 'react'
 import { ProductFormContainer, ProductFormWrapper } from './style'
-import { AppFormLabel, AppInput } from '../../Utils/style'
+import { AppFormLabel, AppInput, AppButton } from '../../Utils/style'
 
 function ProductForm() {
   const [productName, setProductName] = useState("");
@@ -33,9 +33,9 @@ function ProductForm() {
             value={productOwner}
             type="text"
           />
+          <AppButton isFromForm>Add Product</AppButton>
       </ProductFormWrapper>
     </ProductFormContainer>
-    
   )
 }
 

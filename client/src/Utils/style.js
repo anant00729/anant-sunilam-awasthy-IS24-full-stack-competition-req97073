@@ -88,6 +88,7 @@ export const AppButton = styled.button`
   outline-color: transparent;
   color: white;
   cursor: pointer;
+  margin-top: ${(props) => props.isFromForm ? '24px' : 0};
   &:focus {
     outline-width: 0;
   }
@@ -95,8 +96,8 @@ export const AppButton = styled.button`
 
 export const AppFormLabel = styled.label`
   margin-top: 16px;
-  font-size: 18px;
-  margin-left: 16px;
+  font-size: 20px;
+  margin-left: 12px;
   color: black;
 `;
 
@@ -138,4 +139,10 @@ export const SearchButton = styled.img`
   &:focus {
     outline-width: 0;
   }
+`;
+
+export const PageLabel = styled.label`
+  font-size: 24px;
+  text-align: center;
+  margin: 24px auto 16px auto;
 `;
