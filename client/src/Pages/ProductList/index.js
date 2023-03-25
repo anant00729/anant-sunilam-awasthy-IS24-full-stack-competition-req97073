@@ -15,6 +15,7 @@ function ProductList() {
       <PageLabel>Product List</PageLabel>
       <ProductContainer>{
         [1,123,12,3,123,1,23,123,12,31].map((product, index) => {
+          console.log('index', index)
           return <ProductItem key={index} product={product}/>
         })}
       </ProductContainer>

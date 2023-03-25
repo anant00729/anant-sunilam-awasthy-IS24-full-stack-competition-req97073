@@ -1,10 +1,12 @@
 import React from 'react'
 import { ProductContainer, ItemContainer, EditButton, TopItemGroup } from './style'
-import Search from '../../Images/search.png'
+import { useNavigate } from 'react-router-dom';
 
 
 
 function ProductItem() {
+
+  const navigate = useNavigate();
 
   const product = {
     productId: 'IBM IBMIBMIBMIBMIBMIBMIBMIBMIBMIBM',
@@ -23,7 +25,9 @@ function ProductItem() {
 }
 
 
-console.log('product?.productId', product?.productId)
+const handleEditClick = () => {
+  navigate(`/product/${123123}`);
+}
 
   return (
     <ProductContainer>
@@ -31,7 +35,7 @@ console.log('product?.productId', product?.productId)
         <ItemContainer isTopLabel>
           <label>{product?.productId}</label>
         </ItemContainer>
-        <EditButton>Edit Product</EditButton>
+        <EditButton onClick={handleEditClick}>Edit Product</EditButton>
       </TopItemGroup>
       
       <ItemContainer isTopLabel>
@@ -40,8 +44,8 @@ console.log('product?.productId', product?.productId)
       <ItemContainer>
         <label>{product?.productOwnerName}</label>
       </ItemContainer>
-      <ItemContainer>{product?.developers?.map(d => {
-          return <label>{d}</label>
+      <ItemContainer>{product?.developers?.map((d, i) => {
+          return <label key={i}>{d}</label>
         })}
       </ItemContainer>
       <ItemContainer>
