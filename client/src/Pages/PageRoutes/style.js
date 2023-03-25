@@ -17,27 +17,30 @@ export const XL = "(min-width: 1200px)";
 
 export const BodyContainer = styled.div`
   width: 100%;
-  height: 100vh;
   border: 10px solid green;
-
+  
   @media ${SM} {
     width: 600px;
     margin: unset;
+    margin-top: 100px;
   }
 
   @media ${MD} {
     width: 668px;
     margin: unset;
+    margin-top: 100px;
   }
 
   @media ${LG} {
     width: 1000px;
     margin: auto;
+    margin-top: 100px;
   }
 
   @media ${XL} {
     width: 1100px;
     margin: auto;
+    margin-top: 100px;
   }
 `;
 

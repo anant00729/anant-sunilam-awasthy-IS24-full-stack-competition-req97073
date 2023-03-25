@@ -30,13 +30,12 @@ export const AppTextArea = styled.textarea`
 
 export const AppButton = styled.button`
   padding: 10px 16px;
-  background: #fff;
+  background: #4f45e4;
   border: 0 solid transparent;
   border-radius: 4px;
   font-size: 20px;
   outline-color: transparent;
-  color: rgb(55, 65, 81);
-  margin-top: 32px;
+  color: white;
   cursor: pointer;
   &:focus {
     outline-width: 0;

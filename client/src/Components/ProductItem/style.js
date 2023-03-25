@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-
 export const ProductContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  min-height: 100%;
-  overflow-y: scroll;
+  flex-grow: 1; 
+  width: 33%; 
+  height: 200px;
+  border: 10px solid green;
 `;
+

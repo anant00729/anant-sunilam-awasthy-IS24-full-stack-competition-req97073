@@ -1,15 +1,21 @@
-import { Link } from 'react-router-dom';
-import { Header } from './style'
+import { Link, NavLink } from 'react-router-dom';
+import { Header, StyledLink, SearchBar, SearchButton, SearchForm } from './style'
+import { AppButton } from '../../Utils/style'
+import Search from '../../Images/search.png'
 
 const NavBar = () => {
  return (
   <Header>
-    <div>
-      <Link to="/">Home</Link>
-    </div>
-    <div>
-      <Link to="/product/:id">Add Product</Link>
-    </div>
+    <AppButton>
+      <StyledLink to="/">Home</StyledLink>
+    </AppButton>
+    <SearchForm>
+      <SearchBar/>
+      <SearchButton src={Search}/>
+    </SearchForm>
+    <AppButton>
+      <StyledLink to="/product/:id">Add Product</StyledLink>
+    </AppButton>
   </Header>
  );
 };
