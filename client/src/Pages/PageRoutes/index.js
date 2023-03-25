@@ -4,7 +4,8 @@ import ProductForm from '../ProductForm';
 import ProductList from '../ProductList';
 import NoMatch from '../NoMatch'
 import NavBar from '../../Components/NavBar';
-import { PageContainer, BodyContainer } from './style'
+import { PageContainer  } from './style'
+import { BodyContainer } from '../../Utils/style'
 
 function PageRoutes() {
   return (

@@ -15,13 +15,14 @@ export const ProductContainer = styled.div`
 
 export const ItemContainer = styled.div`
   padding: 8px;
-  word-wrap: break-word;
-  margin-right: ${(props) => (props.isTopLabel ? '30px' : '0')};
+  word-break: break-all;
 `
 export const TopItemGroup = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
 `
 
 export const EditButton = styled.div`
