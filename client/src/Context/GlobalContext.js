@@ -9,12 +9,13 @@ SET_ALERT,
 REMOVE_ALERT
 } from "./types";
 import { v4 as uuidv4 } from "uuid";
+
 // import useCropGrid from '../hooks/useCropGrid'
 
 // Initial state
 const initialState = {
-  product_list: {},
-  current_product: {},
+  productList: [],
+  currentProduct: {},
   alerts: []
 };
 
@@ -28,8 +29,26 @@ export const GlobalProvider = ({ children }) => {
 
   // Actions
   const getAllProducts = async () => {
-
-  }
+    const url = 'http://localhost:5010/api/getProductList';
+  
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const res = await response.json();
+      if (res.status){
+        dispatch({
+          type: SHOW_PRODUCT_LIST,
+          payload: res?.productList,
+        });
+      }else {
+        setAlert(res.message)  
+      }
+    } catch (err) {
+      setAlert(`Error fetching ${url}: ${err}`)
+    }
+  };
 
   const addProduct = async () => {
     
@@ -57,8 +76,8 @@ export const GlobalProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
-        product_list: state?.product_list,
-        current_product: state?.current_product,
+        productList: state?.productList,
+        currentProduct: state?.currentProduct,
         alerts: state?.alerts,
         getAllProducts,
         addProduct,

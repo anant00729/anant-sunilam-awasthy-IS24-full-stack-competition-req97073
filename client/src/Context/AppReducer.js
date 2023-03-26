@@ -5,13 +5,15 @@ import {
   SEARCH_PRODUCT,
   SET_ALERT,
   REMOVE_ALERT,
+  
 } from "./types";
 
 const appReducer = (state, action) => {
   switch (action.type) {
     case SHOW_PRODUCT_LIST: {
       return {
-        ...state
+        ...state,
+        productList: action?.payload
       }
     }
     case ADD_PRODUCT: {

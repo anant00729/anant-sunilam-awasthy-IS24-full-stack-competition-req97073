@@ -1,10 +1,17 @@
-import React from 'react'
+import React, {useEffect, useContext} from 'react'
 import ProductItem from '../../Components/ProductItem'
 import { ProductContainer } from './style'
 import Search from '../../Images/search.png'
 import { SearchBar, SearchButton, SearchForm, PageLabel } from '../../Utils/style'
+import { GlobalContext } from "../../Context/GlobalContext";
 
 function ProductList() {
+  const { getAllProducts, productList } = useContext(GlobalContext);
+
+  useEffect(()=> {
+    getAllProducts()
+  }, [])
+
   return (
     <>
       <PageLabel>Search Functionality for Scrum Master and Developer Names</PageLabel>
@@ -14,8 +21,7 @@ function ProductList() {
       </SearchForm>
       <PageLabel>Product List</PageLabel>
       <ProductContainer>{
-        [1,123,12,3,123,1,23,123,12,31].map((product, index) => {
-          console.log('index', index)
+        productList?.map((product, index) => {
           return <ProductItem key={index} product={product}/>
         })}
       </ProductContainer>

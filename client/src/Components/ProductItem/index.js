@@ -4,58 +4,42 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-function ProductItem() {
+function ProductItem({product}) {
 
   const navigate = useNavigate();
 
-  const product = {
-    productId: 'IBM IBMIBMIBMIBMIBMIBMIBMIBMIBMIBM',
-    productName: 'IBM IBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBMIBM',
-    productOwnerName: 'Anant',
-    developers: [
-     "aa",
-     "bb",
-     "cc",
-     "dd",
-     "ee"
-    ],
-    scrumMasterName: 'Hello',
-    startDate: "YYYY/MM/DD",
-    methodology: 'Waterfall'
-}
+  const handleEditClick = () => {
+    navigate(`/product/${123123}`);
+  }
 
-
-const handleEditClick = () => {
-  navigate(`/product/${123123}`);
-}
+  console.log('product?.developers', product?.developers)
 
   return (
     <ProductContainer>
       <TopItemGroup>
         <ItemContainer isTopLabel>
-          <label>{product?.productId}</label>
+          <label>Product Id: {product?.productId}</label>
         </ItemContainer>
         <EditButton onClick={handleEditClick}>Edit Product</EditButton>
       </TopItemGroup>
       
       <ItemContainer isTopLabel>
-        <label>{product?.productName}</label>
+        <label>Product Name: {product?.productName}</label>
       </ItemContainer>
       <ItemContainer>
-        <label>{product?.productOwnerName}</label>
-      </ItemContainer>
-      <ItemContainer>{product?.developers?.map((d, i) => {
-          return <label key={i}>{d}</label>
-        })}
+        <label>Product Owner Name: {product?.productOwnerName}</label>
       </ItemContainer>
       <ItemContainer>
-        <label>{product?.scrumMasterName}</label>
+          <label>Developers: {product?.developers?.join(', ')}</label>
       </ItemContainer>
       <ItemContainer>
-        <label>{product?.startDate}</label>
+        <label>Scrum Master Name: {product?.scrumMasterName}</label>
       </ItemContainer>
       <ItemContainer>
-        <label>{product?.methodology}</label>
+        <label>Start Date: {product?.startDate}</label>
+      </ItemContainer>
+      <ItemContainer>
+        <label>Methodology: {product?.methodology}</label>
       </ItemContainer>
       
     </ProductContainer>

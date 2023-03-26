@@ -5,7 +5,6 @@ import { AppButton } from '../../Utils/style'
 const NavBar = () => {
   const location = useLocation();
   const currentPath = location.pathname;
-  console.log('currentPath', currentPath)
   return (
     <Header>
       <StyledLink to="/">
