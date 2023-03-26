@@ -14,3 +14,7 @@ export const ProductFormWrapper = styled.form`
   box-sizing: border-box;
 `;
 
+export const AddDeveloperWrapper = styled.div`
+  display: flex;
+  margin-top: 16px;
+`;

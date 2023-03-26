@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 /* Extra small devices (phones, 600px and down) */
 export const XS = "(max-width: 600px)";
@@ -59,7 +61,8 @@ export const AppInput = styled.input`
   font-size: 20px;
   outline-color: transparent;
   color: rgb(55, 65, 81);
-  margin-top: 14px;
+  margin-top: ${(props) => props.isForDeveloper ? 0 : '14px'};
+  flex: ${(props) => props.isForDeveloper ? 2 : 0};
   &:focus {
     outline-width: 0;
   }
@@ -92,6 +95,10 @@ export const AppButton = styled.button`
   &:focus {
     outline-width: 0;
   }
+  ${(props) => props.disabled && `
+    opacity: 0.5;
+    cursor: not-allowed;
+  `}
 `;
 
 export const AppFormLabel = styled.label`
@@ -145,4 +152,41 @@ export const PageLabel = styled.label`
   font-size: 24px;
   text-align: center;
   margin: 24px auto 16px auto;
+`;
+
+export const AppSelect = styled.select`
+  padding: 10px 16px;
+  background-color: #eff3f6;
+  border: 0 solid transparent;
+  border-radius: 4px;
+  font-size: 20px;
+  outline-color: transparent;
+  color: rgb(55, 65, 81);
+  margin-top: 14px;
+  &:focus {
+    outline-width: 0;
+  }
+  -moz-appearance:none; /* Firefox */
+  -webkit-appearance:none; /* Safari and Chrome */
+  appearance:none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 99%;
+  background-position-y: 10px;
+`;
+
+export const CustomeDatePicker = styled(DatePicker)`
+  padding: 10px 16px;
+  background-color: #eff3f6;
+  border: 0 solid transparent;
+  border-radius: 4px;
+  font-size: 20px;
+  outline-color: transparent;
+  color: rgb(55, 65, 81);
+  margin-top: ${(props) => props.isForDeveloper ? 0 : '14px'};
+  flex: ${(props) => props.isForDeveloper ? 2 : 0};
+  width: 100%;
+  &:focus {
+    outline-width: 0;
+  }
 `;

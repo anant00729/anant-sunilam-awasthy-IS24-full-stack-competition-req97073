@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const ProductContainer = styled.div`
   position: relative;
-  flex-grow: 1; 
   width: 50%; 
   border: 10px solid white;
   display: flex;

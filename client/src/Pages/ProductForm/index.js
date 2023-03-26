@@ -1,95 +1,112 @@
-import React,{ useState, useContext } from 'react'
-import { ProductFormContainer, ProductFormWrapper } from './style'
-import { AppFormLabel, AppInput, AppButton } from '../../Utils/style'
-import { GlobalContext } from "../../Context/GlobalContext";
+import React, {useContext, useState} from 'react';
+import { useForm } from 'react-hook-form';
+import { ProductFormContainer, ProductFormWrapper, AddDeveloperWrapper } from './style';
+import { AppFormLabel, AppInput, AppButton, AppSelect, CustomeDatePicker } from '../../Utils/style';
+import { GlobalContext } from '../../Context/GlobalContext';
 
 function ProductForm() {
-  const [productName, setProductName] = useState("");
-  const [scrumMaster, setScrumMaster] = useState("");
-  const [productOwner, setProductOwner] = useState("");
-
+  const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'onChange' });
   const { setAlert } = useContext(GlobalContext);
+  const [startDate, setStartDate] = useState('');
+  const [developers, setDevelopers] = useState([]);
+  const [newDeveloper, setNewDeveloper] = useState('');
 
-  const handleLoginClick = (e) => {
-    e.preventDefault();
-    setAlert('Hello all');
-
-    // if (!inputEmail?.length) {
-    //   setAlert("Please enter your email.");
-    //   return;
-    // } else if (!validateEmail(inputEmail)) {
-    //   setAlert("Please enter valid email address.");
-    //   return;
-    // } else if (!inputPassword?.length) {
-    //   setAlert("Please enter your password.");
-    //   return;
-    // }
-
-    // axios({
-    //   method: "POST",
-    //   url: "/v1/auth/login",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //   },
-    //   data: {
-    //     email: inputEmail,
-    //     password: inputPassword,
-    //   },
-    // })
-    //   .then((res) => {
-    //     if (res?.data?.status) {
-    //       storeAuth(
-    //         res?.data?.token,
-    //         res?.data?.user?.id,
-    //         res?.data?.user?.username
-    //       );
-    //       history.push(HOME_ROUTE);
-    //     } else {
-    //       setAlert(res?.data?.message);
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     setAlert(error?.message);
-    //   });
+  const onSubmit = (data) => {
+    console.log(data);
   };
 
+  const handleAddDeveloper = (event) => {
+    event.preventDefault();
+    if (developers.length < 5 && newDeveloper.trim() !== '') {
+      setDevelopers([...developers, newDeveloper]);
+      setNewDeveloper('');
+    }
+  };
+
+  const handleNewDeveloperChange = (event) => {
+    setNewDeveloper(event.target.value);
+  };
 
   return (
     <ProductFormContainer>
-      <ProductFormWrapper>
+        <ProductFormWrapper onSubmit={handleSubmit(onSubmit)}>
           <AppFormLabel>Product Name</AppFormLabel>
           <AppInput
-            onChange={(e) => setProductName(e.target.value)}
-            value={productName}
             type="text"
+            {...register('productName', { required: true })}
           />
+          {errors.productName && (
+            <span className="error">Please enter a product name</span>
+          )}
           <AppFormLabel>Scrum Master</AppFormLabel>
           <AppInput
-            onChange={(e) => setScrumMaster(e.target.value)}
-            value={scrumMaster}
             type="text"
+            {...register('scrumMaster', { required: true })}
           />
+          {errors.scrumMaster && (
+            <span className="error">Please enter a scrum master name</span>
+          )}
           <AppFormLabel>Product Owner</AppFormLabel>
           <AppInput
-            onChange={(e) => setProductOwner(e.target.value)}
-            value={productOwner}
             type="text"
+            {...register('productOwner', { required: true })}
           />
+          {errors.productOwner && (
+            <span className="error">Please enter a product owner name</span>
+          )}
           <AppFormLabel>Methodology</AppFormLabel>
-          <AppInput
-            onChange={(e) => setProductOwner(e.target.value)}
-            value={productOwner}
-            type="text"
+          <AppSelect {...register('methodology')}>
+            <option value="Agile">Agile</option>
+            <option value="Waterfall">Waterfall</option>
+          </AppSelect>
+          <AppFormLabel>Add Developer:</AppFormLabel>
+          <AddDeveloperWrapper>
+            <AppInput
+              isForDeveloper
+              type="text"
+              value={newDeveloper}
+              onChange={handleNewDeveloperChange}
+            />
+            <AppButton onClick={handleAddDeveloper}>Add</AppButton>
+          </AddDeveloperWrapper>
+          {developers.length !== 0 ? (
+            <ul>
+              {developers.map((developer, index) => (
+                <li key={index}>
+                 {developer}
+                 <AppButton onClick={() => setDevelopers(developers.filter((d, i) => i !== index))}>
+                   X
+                 </AppButton>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+          {developers.length === 5 && (
+            <p>Maximum limit of developers reached!</p>
+          )}
+          <AppFormLabel>Start Date: </AppFormLabel>
+          <CustomeDatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            dateFormat="MMMM d, yyyy"
+            shouldCloseOnSelect={true}
+            showMonthDropdown
+            clickableMonthYearDropdown
           />
           <AppButton 
-            isFromForm
-            onClick={(e) => handleLoginClick(e)}>
-            Add Product
+            isFromForm 
+            type="submit" 
+            disabled={
+              !isValid || 
+              developers?.length === 0 || 
+              startDate == null ||
+              startDate?.length === 0
+              }>
+            Save
           </AppButton>
       </ProductFormWrapper>
     </ProductFormContainer>
-  )
+  );
 }
 
-export default ProductForm
+export default ProductForm;
