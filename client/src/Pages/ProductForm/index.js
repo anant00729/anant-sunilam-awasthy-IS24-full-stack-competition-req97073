@@ -1,8 +1,9 @@
 import React, {useContext, useState} from 'react';
 import { useForm } from 'react-hook-form';
-import { ProductFormContainer, ProductFormWrapper, AddDeveloperWrapper } from './style';
+import { ProductFormContainer, ProductFormWrapper, AddDeveloperWrapper, DeveloperChip, DeveloperChipGroup, Cross, DevLabel } from './style';
 import { AppFormLabel, AppInput, AppButton, AppSelect, CustomeDatePicker } from '../../Utils/style';
 import { GlobalContext } from '../../Context/GlobalContext';
+import CrossIcon from '../../Images/cross.png';
 
 function ProductForm() {
   const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'onChange' });
@@ -70,16 +71,14 @@ function ProductForm() {
             <AppButton onClick={handleAddDeveloper}>Add</AppButton>
           </AddDeveloperWrapper>
           {developers.length !== 0 ? (
-            <ul>
+            <DeveloperChipGroup>
               {developers.map((developer, index) => (
-                <li key={index}>
-                 {developer}
-                 <AppButton onClick={() => setDevelopers(developers.filter((d, i) => i !== index))}>
-                   X
-                 </AppButton>
-                </li>
+                <DeveloperChip key={index}>
+                    <DevLabel>{developer}</DevLabel>
+                    <Cross src={CrossIcon} onClick={() => setDevelopers(developers.filter((d, i) => i !== index))}/>
+                </DeveloperChip>
               ))}
-            </ul>
+            </DeveloperChipGroup>
           ) : null}
           {developers.length === 5 && (
             <p>Maximum limit of developers reached!</p>
