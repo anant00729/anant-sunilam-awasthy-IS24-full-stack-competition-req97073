@@ -1,3 +1,4 @@
+const fs = require("fs");
 const express = require("express");
 const productRoute = require("./routers/productRoute");
 const path = require("path");
@@ -24,6 +25,16 @@ app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "public", "build", "index.html"));
 });
 
+const checkAndCreateProductJSONFileToStoreData = () => {
+  const productsFile = path.join(__dirname, 'models' , 'products.json');
+   // Check if the file exists
+   if (!fs.existsSync(productsFile)) {
+    // Create the file with an empty array
+    fs.writeFileSync(productsFile, '[]');
+  }
+}
+
 app.listen(PORT, () => {
+  checkAndCreateProductJSONFileToStoreData();
   console.log(`Server is running on Port ${PORT}`);
 });

@@ -4,15 +4,22 @@ import { ProductFormContainer, ProductFormWrapper, AddDeveloperWrapper, Develope
 import { AppFormLabel, AppInput, AppButton, AppSelect, CustomeDatePicker } from '../../Utils/style';
 import { GlobalContext } from '../../Context/GlobalContext';
 import CrossIcon from '../../Images/cross.png';
+import { useNavigate } from 'react-router-dom';
 
 function ProductForm() {
   const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'onChange' });
-  const { setAlert } = useContext(GlobalContext);
+  const navigate = useNavigate();
   const [startDate, setStartDate] = useState('');
   const [developers, setDevelopers] = useState([]);
   const [newDeveloper, setNewDeveloper] = useState('');
 
+  const { addProduct } = useContext(GlobalContext);
+
   const onSubmit = (data) => {
+    data = {
+      ...data, developers, startDate
+    }
+    addProduct(data,navigate)
     console.log(data);
   };
 
@@ -42,17 +49,17 @@ function ProductForm() {
           <AppFormLabel>Scrum Master</AppFormLabel>
           <AppInput
             type="text"
-            {...register('scrumMaster', { required: true })}
+            {...register('scrumMasterName', { required: true })}
           />
-          {errors.scrumMaster && (
+          {errors.scrumMasterName && (
             <span className="error">Please enter a scrum master name</span>
           )}
           <AppFormLabel>Product Owner</AppFormLabel>
           <AppInput
             type="text"
-            {...register('productOwner', { required: true })}
+            {...register('productOwnerName', { required: true })}
           />
-          {errors.productOwner && (
+          {errors.productOwnerName && (
             <span className="error">Please enter a product owner name</span>
           )}
           <AppFormLabel>Methodology</AppFormLabel>

@@ -50,10 +50,40 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
-  const addProduct = async () => {
-    
-  }
+  const addProduct = async (product, navigate) => {
+    const url = 'http://localhost:5010/api/addProduct';
 
+    product = {
+      ...product,
+      productId: uuidv4().split('-')[0]
+    }
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(product)
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const res = await response.json();
+  
+      if (res.status) {
+        navigate('/')
+        setAlert('Product added successfully!')
+      } else {
+        setAlert('Failed to add product:', res.message)
+      }
+    } catch (err) {
+      setAlert(`Error adding product: ${err}`);
+    }
+  };
+  
   const updateProduct = async () => {
     
   }
