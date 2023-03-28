@@ -41,7 +41,7 @@ http://localhost:5010/
 
 **4. Viewing the Swagger Documentation:**
 
-Launch a web browser and navigate to the specified URL.
+Launch a web browser and navigate to the Swagger Documentation.
 
 ```
 http://localhost:5010/api/api-docs/
