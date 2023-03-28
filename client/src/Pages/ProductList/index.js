@@ -6,6 +6,7 @@ import Empty from '../../Images/empty.png'
 import { SearchBar, SearchButton, SearchForm, PageLabel, AppSelect } from '../../Utils/style'
 import { GlobalContext } from "../../Context/GlobalContext";
 
+// Coponents is used to show ListView of products
 function ProductList() {
   const { getAllProducts, productList, search } = useContext(GlobalContext);
   const [selectedValue, setSelectedValue] = useState('SM');
@@ -19,11 +20,13 @@ function ProductList() {
     setSelectedValue(event.target.value);
   };
   
+  // get all the products on page render
   useEffect(()=> {
     getAllProducts()
     window.scrollTo(0, 0);
   }, [])
 
+  // calls search API on Search click
   const onSearchClick = (e) => {
     e.preventDefault()
     if(searchTerm === '') getAllProducts()

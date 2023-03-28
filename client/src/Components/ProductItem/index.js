@@ -3,7 +3,7 @@ import { ProductContainer, ItemContainer, EditButton, TopItemGroup } from './sty
 import { useNavigate } from 'react-router-dom';
 
 
-
+// Component is used to show the Product card 
 function ProductItem({product}) {
 
   const navigate = useNavigate();
@@ -12,6 +12,7 @@ function ProductItem({product}) {
     navigate(`/product/${productId}`);
   }
 
+  // Converts data string to the Specific format ie. Month Day, Year
   const date = new Date(product?.startDate);
   const options = { month: 'long', day: 'numeric', year: 'numeric' };
   const formattedDate = date.toLocaleDateString('en-US', options);

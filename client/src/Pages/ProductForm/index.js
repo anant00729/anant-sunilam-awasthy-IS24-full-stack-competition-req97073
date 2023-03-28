@@ -6,6 +6,7 @@ import { GlobalContext } from '../../Context/GlobalContext';
 import CrossIcon from '../../Images/cross.png';
 import { useNavigate, useParams } from 'react-router-dom';
 
+// Component is used to Add or Update the product
 function ProductForm() {
   
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ function ProductForm() {
     defaultValues: {}
   });
 
+  // get the product details for the Edit Product Page
   useEffect(() => {
     if(productId){
       getSingleProductDetails(productId)
@@ -28,6 +30,8 @@ function ProductForm() {
     window.scrollTo(0, 0);
   }, []) 
 
+  // On Edit Product the values are auto filled using the 
+  // following hook
   useEffect(() => {
     if (Object.keys(selectedProduct).length) {
       const { productName, scrumMasterName, productOwnerName, methodology, startDate, developers : dev } = selectedProduct;
@@ -46,6 +50,9 @@ function ProductForm() {
     data = {
       ...data, developers, startDate
     }
+    // checks if the form is for Add product or 
+    // edit product and based on that It calls 
+    // seperate APIs ie. addProduct or updateProduct
     if(productId) {
       data = {...data, productId}
       updateProduct(data,navigate)
@@ -56,6 +63,7 @@ function ProductForm() {
       
   };
 
+  // adds developer to the deevelopers list 
   const handleAddDeveloper = (event) => {
     event.preventDefault();
     if (developers.length < 5 && newDeveloper.trim() !== '') {
@@ -68,6 +76,7 @@ function ProductForm() {
     setNewDeveloper(event.target.value);
   };
 
+  // used to disable or enable the Save button
   const saveButtonStatus = !isValid || 
   developers?.length === 0 || 
   startDate === null ||
