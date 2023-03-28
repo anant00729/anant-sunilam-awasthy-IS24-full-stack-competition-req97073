@@ -114,6 +114,127 @@
                   }
               }
           }
+      },
+      "/product/{productId}": {
+        "get": {
+          "tags": [
+            "Product"
+          ],
+          "summary": "Get product by productId",
+          "description": "Returns a single product by its productId",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "productId",
+              "in": "path",
+              "description": "ID of the product to return",
+              "required": true,
+              "type": "string",
+              "format": "hexadecimal"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "schema": {
+                "$ref": "#/definitions/Product"
+              }
+            },
+            "404": {
+              "description": "Product not found"
+            }
+          }
+        }
+      },
+      "/updateProduct": {
+        "post": {
+          "tags": [
+            "Product"
+          ],
+          "summary": "Update an existing product",
+          "description": "",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "product",
+              "in": "body",
+              "description": "Product object to update",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Product"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "schema": {
+                "$ref": "#/definitions/Product"
+              }
+            },
+            "404": {
+              "description": "Product not found"
+            }
+          }
+        }
+      },
+      "/searchProduct": {
+        "post": {
+          "tags": [
+            "Product"
+          ],
+          "summary": "Search products by scrumMasterName or developers",
+          "description": "",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "search",
+              "in": "body",
+              "description": "Search parameters",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string"
+                  },
+                  "searchType": {
+                    "type": "string",
+                    "enum": [
+                      "SM",
+                      "D"
+                    ]
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "boolean"
+                  },
+                  "productList": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/Product"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
   },
   "definitions": {
