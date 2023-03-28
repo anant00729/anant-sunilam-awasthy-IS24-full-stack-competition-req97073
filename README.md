@@ -61,4 +61,4 @@ docker-compose up -d
 ```
 
 ## 🎬 Demo
-[Project Demo](https://user-images.githubusercontent.com/20675885/228364391-acbea036-099a-4639-a3cd-5bd02b4afcac.webm)
+[Project Demo](https://user-images.githubusercontent.com/20675885/228366586-2408e9e7-658c-44dc-a144-490799cf90fa.webm)
