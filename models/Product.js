@@ -64,3 +64,27 @@ exports.getProductByProductId = (productId) => {
 }
 
 
+exports.updateProduct = (product) => {
+  const products = getAllProductsFromJSONFile()
+  if(typeof products === "string") return products;
+  const index = products.findIndex(p => p.productId === product.productId); 
+  if (index === -1) {
+    return `Product with ID ${product.productId} not found`;
+  }
+  products[index] = product;
+
+  // Write the updated list of products back to the file
+  try {
+    const data = JSON.stringify(products, null, 2);
+    fs.writeFileSync(filename, data);
+    return product;
+  } catch (err) {
+    return `Error writing to ${filename}: ${err}`;
+  }
+}
+
+
+
+
+
+

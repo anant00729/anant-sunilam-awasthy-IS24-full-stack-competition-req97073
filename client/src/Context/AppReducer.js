@@ -29,8 +29,12 @@ const appReducer = (state, action) => {
       }
     }
     case UPDATE_PRODUCT: {
+      const index = state.productList.findIndex(p => p?.productId === action?.payload?.productId); 
+      let pList = [...state?.productList]
+      pList[index] = action?.payload
       return {
-        ...state
+        ...state,
+        productList: pList
       }
     }
     case SEARCH_PRODUCT: {

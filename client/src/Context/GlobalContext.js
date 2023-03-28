@@ -86,8 +86,37 @@ export const GlobalProvider = ({ children }) => {
     }
   };
   
-  const updateProduct = async () => {
-    
+  const updateProduct = async (product, navigate) => {
+    const url = `http://localhost:5010/api/updateProduct`;
+  
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(product)
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const res = await response.json();
+      if (res.status){
+        dispatch({
+          type: UPDATE_PRODUCT,
+          payload: res.product,
+        });
+        navigate('/')
+        setAlert('Product updated successfully!')
+      }else {
+        setAlert(res.message)  
+      }
+    } catch (err) {
+      setAlert(`Error fetching product: ${err}`);
+      return;
+    }
   }
 
   const search = async () => {

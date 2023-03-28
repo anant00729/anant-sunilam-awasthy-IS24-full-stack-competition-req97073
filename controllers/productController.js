@@ -1,4 +1,4 @@
-const { getAllProductList, addProduct, getProductByProductId } = require('../models/Product')
+const { getAllProductList, addProduct, getProductByProductId, updateProduct } = require('../models/Product')
 const { validationResult } = require('express-validator');
 
 exports.getProductList = (req, res) => {
@@ -40,4 +40,17 @@ exports.getProductByProductId = (req, res) => {
   }
 };
 
+exports.updateProduct = (req,res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ status: false, errors: errors.array()});
+  }
 
+  const product = req.body || {}
+  const results = updateProduct(product)
+  if (typeof results === 'object') {
+    return res.status(200).json({ status : true, product : results})
+  }else if(typeof results === 'string'){
+    return res.status(500).json({ status : false, message : results})
+  }
+}

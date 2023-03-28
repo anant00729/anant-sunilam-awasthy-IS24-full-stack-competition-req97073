@@ -14,7 +14,7 @@ function ProductForm() {
   const [newDeveloper, setNewDeveloper] = useState('');
   const { productId } = useParams();
 
-  const { addProduct, getSingleProductDetails, selectedProduct } = useContext(GlobalContext);
+  const { addProduct, getSingleProductDetails, selectedProduct, updateProduct } = useContext(GlobalContext);
 
   const { register, handleSubmit, formState: { errors, isValid }, setValue, trigger } = useForm({
     mode: 'onChange', 
@@ -46,7 +46,14 @@ function ProductForm() {
     data = {
       ...data, developers, startDate
     }
-    addProduct(data,navigate)
+    if(productId) {
+      data = {...data, productId}
+      updateProduct(data,navigate)
+    }
+    else {
+      addProduct(data,navigate)
+    }
+      
   };
 
   const handleAddDeveloper = (event) => {
