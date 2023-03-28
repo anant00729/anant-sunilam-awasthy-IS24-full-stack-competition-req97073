@@ -7,7 +7,7 @@ import { GlobalContext } from "../../Context/GlobalContext";
 
 function ProductList() {
   const { getAllProducts, productList, search } = useContext(GlobalContext);
-  const [selectedValue, setSelectedValue] = useState('');
+  const [selectedValue, setSelectedValue] = useState('SM');
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleChange = (event) => {
@@ -22,14 +22,15 @@ function ProductList() {
     getAllProducts()
   }, [])
 
-  const onSearchClick = () => {
+  const onSearchClick = (e) => {
+    e.preventDefault()
     search(searchTerm, selectedValue)
   }
 
   return (
     <>
       <PageLabel>Search Functionality for Scrum Master and Developer Names</PageLabel>
-      <SearchForm>
+      <SearchForm onSubmit={onSearchClick}>
         <AppSelect
           isForSearch
           onChange={handleSelectChange}
