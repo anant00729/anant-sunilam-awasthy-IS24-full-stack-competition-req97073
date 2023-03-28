@@ -63,6 +63,7 @@ export const AppInput = styled.input`
   color: rgb(55, 65, 81);
   margin-top: ${(props) => props.isForDeveloper ? 0 : '14px'};
   flex: ${(props) => props.isForDeveloper ? 2 : 0};
+  flex: ${(props) => props.isFromForm && props.isError ? '3px solid #f64f54' : '0 solid transparent'};
   &:focus {
     outline-width: 0;
   }
@@ -192,4 +193,12 @@ export const CustomeDatePicker = styled(DatePicker)`
   &:focus {
     outline-width: 0;
   }
+`;
+
+export const ErrorLabel = styled.label`
+  color: #f64f54;
+`;
+
+export const ErrorBox = styled.span`
+  margin-top: 10px;
 `;

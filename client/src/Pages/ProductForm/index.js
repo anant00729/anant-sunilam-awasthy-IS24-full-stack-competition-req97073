@@ -1,7 +1,7 @@
 import React, {useContext, useState, useEffect} from 'react';
 import { useForm } from 'react-hook-form';
 import { ProductFormContainer, ProductFormWrapper, AddDeveloperWrapper, DeveloperChip, DeveloperChipGroup, Cross, DevLabel,PageTitle } from './style';
-import { AppFormLabel, AppInput, AppButton, AppSelect, CustomeDatePicker } from '../../Utils/style';
+import { AppFormLabel, AppInput, AppButton, AppSelect, CustomeDatePicker, ErrorLabel, ErrorBox } from '../../Utils/style';
 import { GlobalContext } from '../../Context/GlobalContext';
 import CrossIcon from '../../Images/cross.png';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -70,6 +70,7 @@ function ProductForm() {
 
   const saveButtonStatus = !isValid || 
   developers?.length === 0 || 
+  startDate === null ||
   startDate?.length === 0
 
   return (
@@ -80,34 +81,39 @@ function ProductForm() {
           <AppInput
             type="text"
             {...register('productName', { required: true })}
-            onChange={(e) => {
-              setValue('productName', e.target.value);
-            }}
+            isFromForm
+            isError={errors?.productName}
           />
-          {errors.productName && (
-            <span className="error">Please enter a product name</span>
+          {errors?.productName && (
+            <ErrorBox>
+              <ErrorLabel>Please enter a product name</ErrorLabel>
+            </ErrorBox>
           )}
           <AppFormLabel>Scrum Master</AppFormLabel>
           <AppInput
             type="text"
             {...register('scrumMasterName', { required: true })}
-            onChange={(e) => {
-              setValue('scrumMasterName', e.target.value);
-            }}
+            isFromForm
+            isError={errors?.scrumMasterName}
           />
           {errors.scrumMasterName && (
-            <span className="error">Please enter a scrum master name</span>
+            <ErrorBox>
+              <ErrorLabel>Please enter a scrum master name</ErrorLabel>
+            </ErrorBox>
           )}
           <AppFormLabel>Product Owner</AppFormLabel>
           <AppInput
             type="text"
             {...register('productOwnerName', { required: true })}
-            onChange={(e) => {
-              setValue('productOwnerName', e.target.value);
-            }}
+            isFromForm
+            isError={errors?.scrumMasterName}
           />
           {errors.productOwnerName && (
-            <span className="error">Please enter a product owner name</span>
+            <ErrorBox>
+              <ErrorLabel>
+                Please enter a product owner name
+              </ErrorLabel>
+            </ErrorBox>
           )}
           <AppFormLabel>Methodology</AppFormLabel>
           <AppSelect {...register('methodology')} 
@@ -138,10 +144,12 @@ function ProductForm() {
             </DeveloperChipGroup>
           ) : null}
           {developers.length === 5 && (
-            <p>Maximum limit of developers reached!</p>
+            <p>
+              <label>The product team can have a maximum of 5 developers.</label></p>
           )}
           <AppFormLabel>Start Date: </AppFormLabel>
           <CustomeDatePicker
+            {...register('startDate')} 
             selected={startDate}
             onChange={(date) => setStartDate(date)}
             dateFormat="MMMM d, yyyy"

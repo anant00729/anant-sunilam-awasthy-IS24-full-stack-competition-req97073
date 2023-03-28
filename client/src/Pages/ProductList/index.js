@@ -54,7 +54,6 @@ function ProductList() {
       </ProductContainer>) : 
       <ProductNotFound>
           <ProductNotFoundImg src={Empty}/>
-          <label>Product not found</label>
       </ProductNotFound>
       }
     </>

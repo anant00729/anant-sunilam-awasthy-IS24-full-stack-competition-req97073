@@ -1,30 +1,13 @@
 [
   {
-    "productName": "Product B",
-    "scrumMasterName": "Anant",
-    "productOwnerName": "Arnav",
-    "methodology": "Waterfall",
-    "developers": [
-      "aa",
-      "bb",
-      "1"
-    ],
-    "startDate": "2023-03-29T07:00:00.000Z",
-    "productId": "f5f6fd3f"
-  },
-  {
-    "productName": "B",
-    "scrumMasterName": "aa",
-    "productOwnerName": "bb",
+    "productName": "AA",
+    "scrumMasterName": "bb",
+    "productOwnerName": "cc",
     "methodology": "Agile",
+    "startDate": "2023-03-28T07:00:00.000Z",
     "developers": [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5"
+      "aa"
     ],
-    "startDate": "2023-03-29T07:00:00.000Z",
-    "productId": "bf63a34f"
+    "productId": "d98aac54"
   }
 ]
