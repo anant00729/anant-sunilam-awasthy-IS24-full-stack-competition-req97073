@@ -33,4 +33,13 @@ const validateProductId = [
   .matches(/^[0-9a-fA-F]{8}$/).withMessage('productId must be a valid hexadecimal string with 8 characters')
 ]
 
-module.exports = { validateProductFields, validateProductId };
+const validateSearch = [
+  body('query')
+    .notEmpty()
+    .withMessage('Query cannot be empty'),
+  body('searchType')
+    .isIn(['SM', 'D'])
+    .withMessage('Search type should be either "SM" or "D"')
+]
+
+module.exports = { validateProductFields, validateProductId, validateSearch };

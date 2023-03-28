@@ -6,16 +6,25 @@ import { SearchBar, SearchButton, SearchForm, PageLabel, AppSelect } from '../..
 import { GlobalContext } from "../../Context/GlobalContext";
 
 function ProductList() {
-  const { getAllProducts, productList } = useContext(GlobalContext);
+  const { getAllProducts, productList, search } = useContext(GlobalContext);
   const [selectedValue, setSelectedValue] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleChange = (event) => {
+    setSearchTerm(event.target.value);
+  }
 
   const handleSelectChange = (event) => {
     setSelectedValue(event.target.value);
   };
-
+  
   useEffect(()=> {
     getAllProducts()
   }, [])
+
+  const onSearchClick = () => {
+    search(searchTerm, selectedValue)
+  }
 
   return (
     <>
@@ -26,11 +35,11 @@ function ProductList() {
           onChange={handleSelectChange}
           value={selectedValue}
         >
-          <option value="Scrum Master">Scrum Master</option>
-          <option value="Developer">Developer</option>
+          <option value="SM">Scrum Master</option>
+          <option value="D">Developer</option>
         </AppSelect>
-        <SearchBar/>
-        <SearchButton src={Search}/>
+        <SearchBar value={searchTerm} onChange={handleChange}/>
+        <SearchButton src={Search} onClick={onSearchClick}/>
       </SearchForm>
       <PageLabel>Product List</PageLabel>
       <ProductContainer>{

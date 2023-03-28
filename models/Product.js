@@ -84,7 +84,16 @@ exports.updateProduct = (product) => {
 }
 
 
+exports.searchProduct = (query, searchType="SM") => {
+  const products = getAllProductsFromJSONFile();
 
-
-
-
+  const filteredProducts = products.filter(product => {
+    const { scrumMasterName, developers } = product;
+    if (searchType == "SM"){
+      return scrumMasterName.includes(query)
+    }else if(searchType == "D") {
+      return developers.includes(query)
+    }
+  });
+  return filteredProducts;
+}

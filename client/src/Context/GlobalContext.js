@@ -119,9 +119,32 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
-  const search = async () => {
-    
+  const search = async (query, searchType) => {
+    try {
+      const response = await fetch('http://localhost:5010/api/searchProduct', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          query,
+          searchType
+        })
+      });
+      const res = await response.json();
+      if (res.status){
+        dispatch({
+          type: SHOW_PRODUCT_LIST,
+          payload: res?.productList,
+        });
+      }else {
+        setAlert(res.message)  
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
+  
 
   const getSingleProductDetails = async (productId) => {
     const url = `http://localhost:5010/api/product/${productId}`;
