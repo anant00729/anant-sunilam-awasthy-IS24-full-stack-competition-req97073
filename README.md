@@ -55,7 +55,7 @@ http://localhost:5010/api/api-docs/
 
 Make sure you have docker installed in your system. [Installation Link](https://docs.docker.com/get-docker/)
 
-If you want to use docker to run the project, use following command:
+To use Docker for running the project, navigate to the root level of the project where the docker-compose.yml file is located and execute the following command:
 
 ```
 docker-compose up -d
