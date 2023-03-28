@@ -134,9 +134,10 @@ export const SearchBar = styled.input`
 `;
 
 export const SearchButton = styled.img`
-  padding: 11px 16px;
-  width: 20px;
-  height: 20px;
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
   background: #4f45e4;
   border: 0 solid transparent;
   border-radius: 0 4px 4px 0;

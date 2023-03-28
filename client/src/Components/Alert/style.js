@@ -31,7 +31,7 @@ export const Snackbar = styled.div`
 export const SnackbarContainer = styled.div`
   width: 100%;
   background-color: #eff3f6;
-  border: 1px solid #ff6174;
+  border: 1px solid #4e44e3;
   border-radius: 4px;
   box-shadow: rgb(206,207,209) 0px 2px 10px 0px;
   display: flex;

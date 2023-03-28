@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(express.static("public/build"));
 app.use(express.static("public"));
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/api/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/api", productRoute);
 
 const PORT = process.env.PORT || 5010;

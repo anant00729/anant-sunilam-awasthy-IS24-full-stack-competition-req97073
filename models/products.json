@@ -1,1 +1,39 @@
-[]
+[
+  {
+    "productName": "asdasd",
+    "scrumMasterName": "asdasd",
+    "productOwnerName": "asdasd",
+    "methodology": "Agile",
+    "developers": [
+      "asdasd"
+    ],
+    "startDate": "2023-03-18T07:00:00.000Z",
+    "productId": "53b7e431"
+  },
+  {
+    "productName": "asd",
+    "scrumMasterName": "asdasd",
+    "productOwnerName": "asdasd",
+    "methodology": "Agile",
+    "developers": [
+      "asdasd",
+      "asd",
+      "asd",
+      "asdasd",
+      "asdasd"
+    ],
+    "startDate": "2023-03-20T07:00:00.000Z",
+    "productId": "cb704f34"
+  },
+  {
+    "productName": "asdasd",
+    "scrumMasterName": "asdasd",
+    "productOwnerName": "asdasd",
+    "methodology": "Agile",
+    "developers": [
+      "asdasd"
+    ],
+    "startDate": "2023-03-23T07:00:00.000Z",
+    "productId": "040d14ef"
+  }
+]
