@@ -1,4 +1,4 @@
-const { body } = require('express-validator');
+const { body, param } = require('express-validator');
 
 const validateProductFields = [
   body('productId')
@@ -26,4 +26,11 @@ const validateProductFields = [
     .isString().withMessage('methodology must be a string'),
 ];
 
-module.exports = { validateProductFields };
+const validateProductId = [
+  param('productId')
+  .exists().withMessage('productId is required')
+  .isString().withMessage('productId must be a string')
+  .matches(/^[0-9a-fA-F]{8}$/).withMessage('productId must be a valid hexadecimal string with 8 characters')
+]
+
+module.exports = { validateProductFields, validateProductId };

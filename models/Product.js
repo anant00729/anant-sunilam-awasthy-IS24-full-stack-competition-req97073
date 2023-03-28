@@ -4,6 +4,20 @@ const productFile = 'products.json'
 
 const filename = path.join(__dirname, productFile);
 
+const getAllProductsFromJSONFile = () => {
+  // Read the existing products from the file
+  let products = [];
+  if (fs.existsSync(filename)) {
+    try {
+      const data = fs.readFileSync(filename);
+      products = JSON.parse(data);
+      return products
+    } catch (err) {
+      return `Error writing to ${filename}: ${err}`
+    }
+  } 
+}
+
 exports.getAllProductList = () => {
   if (fs.existsSync(filename)) {
     try {
@@ -19,16 +33,8 @@ exports.getAllProductList = () => {
 };
 
 exports.addProduct = (product) => {
-  // Read the existing products from the file
-  let products = [];
-  if (fs.existsSync(filename)) {
-    try {
-      const data = fs.readFileSync(filename);
-      products = JSON.parse(data);
-    } catch (err) {
-      return `Error writing to ${filename}: ${err}`;
-    }
-  }
+  const products = getAllProductsFromJSONFile()
+  if(typeof products === "string") return products;
   
   // Add the new product to the existing list of products
   products.push(product);
@@ -42,3 +48,19 @@ exports.addProduct = (product) => {
     return `Error writing to ${filename}: ${err}`;
   }
 };
+
+exports.getProductByProductId = (productId) => {
+  const products = getAllProductsFromJSONFile()
+  if(typeof products === "string") return products;
+  const product = products.find(p => p.productId === productId);
+
+  if (product) {
+    // Send the product object as the response
+    return product;
+  } else {
+    // Send an error message if the product is not found
+    return `Product not found with the ${productId}`;
+  }
+}
+
+
