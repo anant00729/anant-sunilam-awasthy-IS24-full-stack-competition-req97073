@@ -1,64 +1,30 @@
 [
   {
-    "productName": "Anant",
-    "scrumMasterName": "hannan",
-    "productOwnerName": "asdasd",
+    "productName": "Product B",
+    "scrumMasterName": "Anant",
+    "productOwnerName": "Arnav",
     "methodology": "Waterfall",
     "developers": [
-      "anant",
-      "1",
-      "2",
-      "3"
-    ],
-    "startDate": "2023-03-18T07:00:00.000Z",
-    "productId": "53b7e431"
-  },
-  {
-    "productName": "Neelam",
-    "scrumMasterName": "asdasd",
-    "productOwnerName": "asdasd",
-    "methodology": "Waterfall",
-    "developers": [
-      "asdasd",
-      "asdasd",
-      "asdasd",
+      "aa",
+      "bb",
       "1"
     ],
-    "startDate": "2023-03-20T07:00:00.000Z",
-    "productId": "cb704f34"
+    "startDate": "2023-03-29T07:00:00.000Z",
+    "productId": "f5f6fd3f"
   },
   {
-    "productName": "asdasd",
-    "scrumMasterName": "asdasd",
-    "productOwnerName": "asdasd",
+    "productName": "B",
+    "scrumMasterName": "aa",
+    "productOwnerName": "bb",
     "methodology": "Agile",
     "developers": [
-      "asdasd"
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
     ],
-    "startDate": "2023-03-23T07:00:00.000Z",
-    "productId": "040d14ef"
-  },
-  {
-    "productName": "sadj",
-    "scrumMasterName": "askd",
-    "productOwnerName": "asdjashd",
-    "methodology": "Waterfall",
-    "developers": [
-      "asdasd",
-      "1"
-    ],
-    "startDate": "2023-03-22T07:00:00.000Z",
-    "productId": "38e35b88"
-  },
-  {
-    "productName": "asdasd",
-    "scrumMasterName": "asdsad",
-    "productOwnerName": "asdad",
-    "methodology": "Waterfall",
-    "developers": [
-      "asdasd"
-    ],
-    "startDate": "2023-03-22T07:00:00.000Z",
-    "productId": "1194fa3f"
+    "startDate": "2023-03-29T07:00:00.000Z",
+    "productId": "bf63a34f"
   }
 ]

@@ -4,6 +4,8 @@ const productFile = 'products.json'
 
 const filename = path.join(__dirname, productFile);
 
+/* This function reads the products data from the JSON file 
+   and returns it as an array of products. */
 const getAllProductsFromJSONFile = () => {
   // Read the existing products from the file
   let products = [];
@@ -18,6 +20,8 @@ const getAllProductsFromJSONFile = () => {
   } 
 }
 
+/* his function reads the products data from the JSON file and returns it as an array of products. 
+   If the file does not exist, it returns an error message. */
 exports.getAllProductList = () => {
   if (fs.existsSync(filename)) {
     try {
@@ -32,6 +36,10 @@ exports.getAllProductList = () => {
   }
 };
 
+/* This function reads the existing products from the file, 
+   adds a new product to the list, and writes the updated list 
+   of products back to the file. It returns the added product if successful, 
+   and an error message if not. */
 exports.addProduct = (product) => {
   const products = getAllProductsFromJSONFile()
   if(typeof products === "string") return products;
@@ -49,6 +57,12 @@ exports.addProduct = (product) => {
   }
 };
 
+
+/*
+This function reads the products data from the JSON file, searches for a 
+product with a given ID, and returns it. If the product is not found, it 
+returns an error message.
+*/
 exports.getProductByProductId = (productId) => {
   const products = getAllProductsFromJSONFile()
   if(typeof products === "string") return products;
@@ -63,7 +77,11 @@ exports.getProductByProductId = (productId) => {
   }
 }
 
-
+/*
+ This function reads the existing products from the file, updates a product 
+ with new information, and writes the updated list of products back to the file. 
+ It returns the updated product if successful, and an error message if not.
+*/
 exports.updateProduct = (product) => {
   const products = getAllProductsFromJSONFile()
   if(typeof products === "string") return products;
@@ -83,7 +101,10 @@ exports.updateProduct = (product) => {
   }
 }
 
-
+/*
+ This function reads the products data from the JSON file, filters 
+ the products based on a given search query and type (searching for 
+ Scrum Masters or Developers), and returns the filtered products.*/
 exports.searchProduct = (query, searchType="SM") => {
   const products = getAllProductsFromJSONFile();
 
