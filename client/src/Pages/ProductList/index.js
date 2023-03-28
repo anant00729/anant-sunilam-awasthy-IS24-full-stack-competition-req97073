@@ -1,7 +1,8 @@
 import React, {useEffect, useContext, useState} from 'react'
 import ProductItem from '../../Components/ProductItem'
-import { ProductContainer } from './style'
+import { ProductContainer, ProductNotFound, ProductNotFoundImg } from './style'
 import Search from '../../Images/search.png'
+import Empty from '../../Images/empty.png'
 import { SearchBar, SearchButton, SearchForm, PageLabel, AppSelect } from '../../Utils/style'
 import { GlobalContext } from "../../Context/GlobalContext";
 
@@ -20,11 +21,13 @@ function ProductList() {
   
   useEffect(()=> {
     getAllProducts()
+    window.scrollTo(0, 0);
   }, [])
 
   const onSearchClick = (e) => {
     e.preventDefault()
-    search(searchTerm, selectedValue)
+    if(searchTerm === '') getAllProducts()
+    else search(searchTerm, selectedValue)
   }
 
   return (
@@ -43,11 +46,17 @@ function ProductList() {
         <SearchButton src={Search} onClick={onSearchClick}/>
       </SearchForm>
       <PageLabel>Product List</PageLabel>
-      <ProductContainer>{
+      {productList.length > 0 ? 
+      (<ProductContainer>{
         productList?.map((product, index) => {
           return <ProductItem key={index} product={product}/>
         })}
-      </ProductContainer>
+      </ProductContainer>) : 
+      <ProductNotFound>
+          <ProductNotFoundImg src={Empty}/>
+          <label>Product not found</label>
+      </ProductNotFound>
+      }
     </>
     
   )

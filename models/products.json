@@ -16,11 +16,12 @@
     "productName": "Neelam",
     "scrumMasterName": "asdasd",
     "productOwnerName": "asdasd",
-    "methodology": "Agile",
+    "methodology": "Waterfall",
     "developers": [
       "asdasd",
       "asdasd",
-      "asdasd"
+      "asdasd",
+      "1"
     ],
     "startDate": "2023-03-20T07:00:00.000Z",
     "productId": "cb704f34"
@@ -40,9 +41,10 @@
     "productName": "sadj",
     "scrumMasterName": "askd",
     "productOwnerName": "asdjashd",
-    "methodology": "Agile",
+    "methodology": "Waterfall",
     "developers": [
-      "asdasd"
+      "asdasd",
+      "1"
     ],
     "startDate": "2023-03-22T07:00:00.000Z",
     "productId": "38e35b88"
