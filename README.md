@@ -47,6 +47,8 @@ Launch a web browser and navigate to the Swagger Documentation.
 http://localhost:5010/api/api-docs/
 ```
 
+<img width="1436" alt="Screen Shot 2023-03-28 at 1 42 13 PM" src="https://user-images.githubusercontent.com/20675885/228364496-a992f39d-12b0-4a85-8ab8-07c60a84c7c3.png">
+
 
 ## 🐳 Getting Started (with docker)
 
@@ -59,4 +61,4 @@ docker-compose up -d
 ```
 
 ## 🎬 Demo
-[Project Demo](https://user-images.githubusercontent.com/20675885/228363494-c13f6cd6-6a06-4745-a2c9-0322ad77c644.webm)
+[Project Demo](https://user-images.githubusercontent.com/20675885/228364391-acbea036-099a-4639-a3cd-5bd02b4afcac.webm)
