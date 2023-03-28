@@ -16,7 +16,7 @@ function PageRoutes() {
         <Routes>
           <Route path="/" element={<ProductList />} />
           <Route exact path="/product" element={<ProductForm />} />
-          <Route path="/product/:id" element={<ProductForm />} />
+          <Route path="/product/:productId" element={<ProductForm />} />
           <Route path="*" element={<NoMatch />} />
        </Routes>
       </BodyContainer>

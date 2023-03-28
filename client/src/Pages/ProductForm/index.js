@@ -1,10 +1,10 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import { useForm } from 'react-hook-form';
-import { ProductFormContainer, ProductFormWrapper, AddDeveloperWrapper, DeveloperChip, DeveloperChipGroup, Cross, DevLabel } from './style';
+import { ProductFormContainer, ProductFormWrapper, AddDeveloperWrapper, DeveloperChip, DeveloperChipGroup, Cross, DevLabel,PageTitle } from './style';
 import { AppFormLabel, AppInput, AppButton, AppSelect, CustomeDatePicker } from '../../Utils/style';
 import { GlobalContext } from '../../Context/GlobalContext';
 import CrossIcon from '../../Images/cross.png';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function ProductForm() {
   const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'onChange' });
@@ -12,8 +12,17 @@ function ProductForm() {
   const [startDate, setStartDate] = useState('');
   const [developers, setDevelopers] = useState([]);
   const [newDeveloper, setNewDeveloper] = useState('');
+  const { productId } = useParams();
 
   const { addProduct } = useContext(GlobalContext);
+
+  useEffect(() => {
+    if(productId){
+
+    }
+  }, []) 
+
+  console.log('productId', productId)
 
   const onSubmit = (data) => {
     data = {
@@ -37,6 +46,7 @@ function ProductForm() {
 
   return (
     <ProductFormContainer>
+        <PageTitle>{productId ? 'Edit' : 'Add'} Product</PageTitle>  
         <ProductFormWrapper onSubmit={handleSubmit(onSubmit)}>
           <AppFormLabel>Product Name</AppFormLabel>
           <AppInput

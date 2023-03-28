@@ -8,11 +8,9 @@ function ProductItem({product}) {
 
   const navigate = useNavigate();
 
-  const handleEditClick = () => {
-    navigate(`/product/${123123}`);
+  const handleEditClick = (productId) => {
+    navigate(`/product/${productId}`);
   }
-
-  console.log('product?.developers', product?.developers)
 
   return (
     <ProductContainer>
@@ -20,7 +18,7 @@ function ProductItem({product}) {
         <ItemContainer isTopLabel>
           <label>Product Id: {product?.productId}</label>
         </ItemContainer>
-        <EditButton onClick={handleEditClick}>Edit Product</EditButton>
+        <EditButton onClick={() => handleEditClick(product?.productId)}>Edit Product</EditButton>
       </TopItemGroup>
       
       <ItemContainer isTopLabel>

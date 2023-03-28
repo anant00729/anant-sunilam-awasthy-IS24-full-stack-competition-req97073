@@ -47,3 +47,7 @@ export const DevLabel = styled.label`
   margin-left: 8px;
   margin-top: -2px;
 `;
+
+export const PageTitle = styled.h2`
+ text-align: center;
+`;
