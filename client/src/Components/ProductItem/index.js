@@ -12,6 +12,10 @@ function ProductItem({product}) {
     navigate(`/product/${productId}`);
   }
 
+  const date = new Date(product?.startDate);
+  const options = { month: 'long', day: 'numeric', year: 'numeric' };
+  const formattedDate = date.toLocaleDateString('en-US', options);
+  
   return (
     <ProductContainer>
       <TopItemGroup>
@@ -34,7 +38,7 @@ function ProductItem({product}) {
         <label>Scrum Master Name: {product?.scrumMasterName}</label>
       </ItemContainer>
       <ItemContainer>
-        <label>Start Date: {product?.startDate}</label>
+        <label>Start Date: {formattedDate}</label>
       </ItemContainer>
       <ItemContainer>
         <label>Methodology: {product?.methodology}</label>
