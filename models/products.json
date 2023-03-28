@@ -1,13 +1,2 @@
 [
-  {
-    "productName": "AA",
-    "scrumMasterName": "bb",
-    "productOwnerName": "cc",
-    "methodology": "Agile",
-    "startDate": "2023-03-28T07:00:00.000Z",
-    "developers": [
-      "aa"
-    ],
-    "productId": "d98aac54"
-  }
 ]
