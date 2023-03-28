@@ -1,6 +1,7 @@
 const { getAllProductList, addProduct, getProductByProductId, updateProduct, searchProduct } = require('../models/Product')
 const { validationResult } = require('express-validator');
 
+// Returns a list of all products
 exports.getProductList = (req, res) => {
   const results = getAllProductList()
   if (typeof results === 'object') {
@@ -10,6 +11,7 @@ exports.getProductList = (req, res) => {
   }
 };
 
+// Adds a new product
 exports.addProduct = (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -25,7 +27,7 @@ exports.addProduct = (req, res) => {
   }
 };
 
-
+// Returns a single product with the given productId
 exports.getProductByProductId = (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -40,6 +42,7 @@ exports.getProductByProductId = (req, res) => {
   }
 };
 
+// Updates an existing product
 exports.updateProduct = (req,res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -55,6 +58,7 @@ exports.updateProduct = (req,res) => {
   }
 }
 
+// Searches for products based on the given search query and search type
 exports.searchProduct = (req,res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
