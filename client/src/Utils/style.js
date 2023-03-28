@@ -163,7 +163,9 @@ export const AppSelect = styled.select`
   font-size: 20px;
   outline-color: transparent;
   color: rgb(55, 65, 81);
-  margin-top: 14px;
+  margin-top: ${(props) => props.isForSearch ? 0 : '14px'};
+  width: ${(props) => props.isForSearch ? '180px' : 'unset'};
+  
   &:focus {
     outline-width: 0;
   }
