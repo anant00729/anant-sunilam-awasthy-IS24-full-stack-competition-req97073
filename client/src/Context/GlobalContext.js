@@ -11,7 +11,6 @@ GET_SINGLE_PRODUCT
 } from "./types";
 import { v4 as uuidv4 } from "uuid";
 
-// import useCropGrid from '../hooks/useCropGrid'
 
 // Initial state
 const initialState = {
@@ -21,17 +20,18 @@ const initialState = {
   selectedProduct: {}
 };
 
+const BASE_URL = 'http://localhost:5010/api/'
+
 // Create context
 export const GlobalContext = createContext(initialState);
 
 // Provider component
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
-  // const { getCropTypeDetails, getLandElevation, getVanGenuchtenParams } = useCropGrid() 
 
   // Actions
   const getAllProducts = async () => {
-    const url = 'http://localhost:5010/api/getProductList';
+    const url = `${BASE_URL}getProductList`;
   
     try {
       const response = await fetch(url);
@@ -53,7 +53,7 @@ export const GlobalProvider = ({ children }) => {
   };
 
   const addProduct = async (product, navigate) => {
-    const url = 'http://localhost:5010/api/addProduct';
+    const url = `${BASE_URL}addProduct`;
 
     product = {
       ...product,
@@ -87,7 +87,7 @@ export const GlobalProvider = ({ children }) => {
   };
   
   const updateProduct = async (product, navigate) => {
-    const url = `http://localhost:5010/api/updateProduct`;
+    const url = `${BASE_URL}updateProduct`;
   
     try {
       const response = await fetch(url, {
@@ -121,7 +121,7 @@ export const GlobalProvider = ({ children }) => {
 
   const search = async (query, searchType) => {
     try {
-      const response = await fetch('http://localhost:5010/api/searchProduct', {
+      const response = await fetch(`${BASE_URL}searchProduct`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -147,7 +147,7 @@ export const GlobalProvider = ({ children }) => {
   
 
   const getSingleProductDetails = async (productId) => {
-    const url = `http://localhost:5010/api/product/${productId}`;
+    const url = `${BASE_URL}product/${productId}`;
   
     try {
       const response = await fetch(url, {
