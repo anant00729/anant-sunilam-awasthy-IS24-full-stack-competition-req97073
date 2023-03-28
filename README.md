@@ -52,7 +52,7 @@ http://localhost:5010/api/api-docs/
 
 ## 🐳 Getting Started (with docker)
 
-Make sure you have docker installed in your system
+Make sure you have docker installed in your system. [Installation Link](https://docs.docker.com/get-docker/)
 
 If you want to use docker to run the project, use following command:
 
