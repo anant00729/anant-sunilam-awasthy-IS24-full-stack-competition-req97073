@@ -6,7 +6,8 @@ ADD_PRODUCT,
 UPDATE_PRODUCT,
 SEARCH_PRODUCT,
 SET_ALERT,
-REMOVE_ALERT
+REMOVE_ALERT,
+GET_SINGLE_PRODUCT
 } from "./types";
 import { v4 as uuidv4 } from "uuid";
 
@@ -16,7 +17,8 @@ import { v4 as uuidv4 } from "uuid";
 const initialState = {
   productList: [],
   currentProduct: {},
-  alerts: []
+  alerts: [],
+  selectedProduct: {}
 };
 
 // Create context
@@ -91,6 +93,37 @@ export const GlobalProvider = ({ children }) => {
   const search = async () => {
     
   }
+
+  const getSingleProductDetails = async (productId) => {
+    const url = `http://localhost:5010/api/product/${productId}`;
+  
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const res = await response.json();
+      if (res.status){
+        dispatch({
+          type: GET_SINGLE_PRODUCT,
+          payload: res.product,
+        });
+      }else {
+        setAlert(res.message)  
+      }
+    } catch (err) {
+      setAlert(`Error fetching product: ${err}`);
+      return;
+    }
+  };
+  
   
   const setAlert = (msg, timeout = 2500) => {
     if (msg) {
@@ -109,11 +142,13 @@ export const GlobalProvider = ({ children }) => {
         productList: state?.productList,
         currentProduct: state?.currentProduct,
         alerts: state?.alerts,
+        selectedProduct: state?.selectedProduct,
         getAllProducts,
         addProduct,
         updateProduct,
         search,
-        setAlert
+        setAlert,
+        getSingleProductDetails
       }}
     >
       {children}

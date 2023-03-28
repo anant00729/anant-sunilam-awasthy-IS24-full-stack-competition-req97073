@@ -7,29 +7,46 @@ import CrossIcon from '../../Images/cross.png';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function ProductForm() {
-  const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'onChange' });
+  
   const navigate = useNavigate();
   const [startDate, setStartDate] = useState('');
   const [developers, setDevelopers] = useState([]);
   const [newDeveloper, setNewDeveloper] = useState('');
   const { productId } = useParams();
 
-  const { addProduct } = useContext(GlobalContext);
+  const { addProduct, getSingleProductDetails, selectedProduct } = useContext(GlobalContext);
+
+  const { register, handleSubmit, formState: { errors, isValid }, setValue, trigger } = useForm({
+    mode: 'onChange', 
+    defaultValues: {}
+  });
 
   useEffect(() => {
     if(productId){
-
+      getSingleProductDetails(productId)
     }
+    window.scrollTo(0, 0);
   }, []) 
 
-  console.log('productId', productId)
+  useEffect(() => {
+    if (Object.keys(selectedProduct).length) {
+      const { productName, scrumMasterName, productOwnerName, methodology, startDate, developers : dev } = selectedProduct;
+      setValue('productName', productName, true);
+      setValue('scrumMasterName', scrumMasterName, true);
+      setValue('productOwnerName', productOwnerName, true);
+      setValue('methodology', methodology, true);
+      if(startDate) setStartDate(new Date(startDate));
+      if (dev?.length)setDevelopers(dev);
+      trigger()
+    }
+  }, [selectedProduct, setValue]);
+
 
   const onSubmit = (data) => {
     data = {
       ...data, developers, startDate
     }
     addProduct(data,navigate)
-    console.log(data);
   };
 
   const handleAddDeveloper = (event) => {
@@ -44,6 +61,10 @@ function ProductForm() {
     setNewDeveloper(event.target.value);
   };
 
+  const saveButtonStatus = !isValid || 
+  developers?.length === 0 || 
+  startDate?.length === 0
+
   return (
     <ProductFormContainer>
         <PageTitle>{productId ? 'Edit' : 'Add'} Product</PageTitle>  
@@ -52,6 +73,9 @@ function ProductForm() {
           <AppInput
             type="text"
             {...register('productName', { required: true })}
+            onChange={(e) => {
+              setValue('productName', e.target.value);
+            }}
           />
           {errors.productName && (
             <span className="error">Please enter a product name</span>
@@ -60,6 +84,9 @@ function ProductForm() {
           <AppInput
             type="text"
             {...register('scrumMasterName', { required: true })}
+            onChange={(e) => {
+              setValue('scrumMasterName', e.target.value);
+            }}
           />
           {errors.scrumMasterName && (
             <span className="error">Please enter a scrum master name</span>
@@ -68,12 +95,18 @@ function ProductForm() {
           <AppInput
             type="text"
             {...register('productOwnerName', { required: true })}
+            onChange={(e) => {
+              setValue('productOwnerName', e.target.value);
+            }}
           />
           {errors.productOwnerName && (
             <span className="error">Please enter a product owner name</span>
           )}
           <AppFormLabel>Methodology</AppFormLabel>
-          <AppSelect {...register('methodology')}>
+          <AppSelect {...register('methodology')} 
+            onChange={(e) => {
+              setValue('methodology', e.target.value);
+            }}>
             <option value="Agile">Agile</option>
             <option value="Waterfall">Waterfall</option>
           </AppSelect>
@@ -112,12 +145,7 @@ function ProductForm() {
           <AppButton 
             isFromForm 
             type="submit" 
-            disabled={
-              !isValid || 
-              developers?.length === 0 || 
-              startDate == null ||
-              startDate?.length === 0
-              }>
+            disabled={saveButtonStatus}>
             Save
           </AppButton>
       </ProductFormWrapper>

@@ -29,7 +29,7 @@ exports.addProduct = (req, res) => {
 exports.getProductByProductId = (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(422).json({ status: false, errors: errors.array() });
+    return res.status(422).json({ status: false, errors: errors.array()});
   }
   const productId = req.params.productId || '';
   const results = getProductByProductId(productId)

@@ -5,7 +5,7 @@ import {
   SEARCH_PRODUCT,
   SET_ALERT,
   REMOVE_ALERT,
-  
+  GET_SINGLE_PRODUCT
 } from "./types";
 
 const appReducer = (state, action) => {
@@ -13,7 +13,14 @@ const appReducer = (state, action) => {
     case SHOW_PRODUCT_LIST: {
       return {
         ...state,
-        productList: action?.payload
+        productList: action?.payload,
+        selectedProduct: {}
+      }
+    }
+    case GET_SINGLE_PRODUCT: {
+      return {
+        ...state,
+        selectedProduct: action?.payload
       }
     }
     case ADD_PRODUCT: {
